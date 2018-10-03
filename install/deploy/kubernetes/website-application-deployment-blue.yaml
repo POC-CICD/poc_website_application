@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: website-application-green
+  name: website-application-blue
   namespace: default
   labels:
     name: website-application
@@ -18,7 +18,7 @@ spec:
         name: website-application
         type: frontend
         version: "1"
-        deploymentType: GREEN
+        deploymentType: BLUE
     spec:
       containers:
       - name: website-application

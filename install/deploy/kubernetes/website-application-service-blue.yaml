@@ -15,4 +15,4 @@ spec:
 
   selector:
     name: website-application
-    deploymentType: GREEN
+    deploymentType: BLUE
