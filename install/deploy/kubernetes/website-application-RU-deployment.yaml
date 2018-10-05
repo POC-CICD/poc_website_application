@@ -49,6 +49,21 @@ spec:
           value: -Dnews.application.url=http://216.218.200.209:30007/news/twitter
         command: ["java"]
         args: ["$(SERVER_PORT)", "$(ADMIN_APPLICATION_URL)", "$(NEWS_APPLICATION_URL)", "$(DISCOVERY_SERVER_URL)", "-Deureka.instance.preferIpAddress=true", "-Deureka.instance.ipAddress=$(MY_POD_IP)", "-jar", "/usr/src/website-application-SNAPSHOT.jar"]
+        readinessProbe:
+          httpGet:
+            path: /
+            host: 127.0.0.1
+            port: 30055
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          timeoutSeconds: 1
+        livenessProbe:
+           tcpSocket:
+             port: 30055
+             host: 127.0.0.1
+           initialDelaySeconds: 15
+           periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
