@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-application
+  namespace: canary
+  labels:
+    app: website-application
+spec:
+  type: NodePort
+  ports:
+  - port: 9001
+    nodePort: 30256
+    targetPort: 9001
+    name: http
+  selector:
+    app: website-application
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: website-application-v1
+  namespace: canary
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: website-application
+        version: website-application-v1
+    spec:
+      containers:
+      - name: website-application
+        image: nisumpk/website_application
+        ports:
+        - containerPort: 9001
+        env:
+        - name: SERVER_PORT
+          value: -Dserver.port=9001
+        - name: DISCOVERY_SERVER_URL
+          value: "-Deureka.client.serviceUrl.defaultZone=http://discovery-server:7001/eureka/"
+        - name: ADMIN_APPLICATION_URL
+          value: -Dadmin.application.url=http://216.218.200.224:30254
+        - name: NEWS_APPLICATION_URL
+          value: -Dnews.application.url=http://216.218.200.224:30255
+        command: ["java"]
+        args: ["$(SERVER_PORT)", "$(ADMIN_APPLICATION_URL)", "$(NEWS_APPLICATION_URL)", "$(DISCOVERY_SERVER_URL)", "-jar", "/usr/src/website-application-SNAPSHOT.jar"]
