@@ -39,7 +39,7 @@ spec:
         - name: DISCOVERY_SERVER_URL
           value: "-Deureka.client.serviceUrl.defaultZone=http://discovery-server:7001/eureka/"
         - name: ADMIN_APPLICATION_URL
-          value: -Dadmin.application.url=http://216.218.200.224:30254
+          value: -Dadmin.application.url=http://adminapp.devopspoc.com
         - name: NEWS_APPLICATION_URL
           value: -Dnews.application.url=http://216.218.200.224:30255
         command: ["java"]
