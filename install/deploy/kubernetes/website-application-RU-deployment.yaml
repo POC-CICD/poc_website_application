@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: website-application
-        image: nisumpk/website_application
+        image: poccicdsaad/website_application
         ports:
         - containerPort: 9001
         env:
