@@ -31,8 +31,8 @@ spec:
         - name: DISCOVERY_SERVER_URL
           value: "-Deureka.client.serviceUrl.defaultZone=http://discovery-server-service:7001/eureka/"
         - name: ADMIN_APPLICATION_URL
-          value: -Dadmin.application.url=http://216.218.200.252/admin/companies
+          value: -Dadmin.application.url=http://35.238.62.80:80/admin/companies
         - name: NEWS_APPLICATION_URL
-          value: -Dnews.application.url=http://216.218.200.252/news/twitter
+          value: -Dnews.application.url=http://35.238.62.80:80/news/twitter
         command: ["java"]
         args: ["$(SERVER_PORT)", "$(ADMIN_APPLICATION_URL)", "$(NEWS_APPLICATION_URL)", "$(DISCOVERY_SERVER_URL)", "-Deureka.instance.preferIpAddress=true", "-Deureka.instance.ipAddress=website-application-service", "-jar", "/usr/src/website-application-SNAPSHOT.jar"]
