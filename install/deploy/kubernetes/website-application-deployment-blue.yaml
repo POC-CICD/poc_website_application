@@ -23,6 +23,7 @@ spec:
       containers:
       - name: website-application
         image: poccicdsaad/website_application
+        imagePullPolicy: Always
         ports:
         - containerPort: 9001
         env:
